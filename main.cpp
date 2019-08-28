@@ -18,6 +18,7 @@ int main()
 
         // print pow hash result
         unsigned char blkhashout[32];
+	unsigned char blkcmix[16];
         memcpy(blkhashout,reinterpret_cast<unsigned char*>(&powhash),32);
         for (unsigned int i = 0; i < 32; i++)
           printf("%02hhx", blkhashout[i]);
@@ -30,10 +31,16 @@ int main()
             blkheader[0] = x;
             memcpy(reinterpret_cast<unsigned char*>(&block), blkheader, 100);
             uint256 powhash = block.GetPoWHash();
+            uint128 cmix = block.GetCMix();
 
             memcpy(blkhashout,reinterpret_cast<unsigned char*>(&powhash),32);
             for (unsigned int i = 0; i < 32; i++)
               printf("%02hhx", blkhashout[i]);
+            printf("\n");
+
+            memcpy(blkcmix,reinterpret_cast<unsigned char*>(&cmix),16);
+            for (unsigned int i = 0; i < 16; i++)
+              printf("%02hhx", blkcmix[i]);
             printf("\n");
 
             x++;

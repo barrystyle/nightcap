@@ -36,4 +36,5 @@ public:
     }
 
     uint256 GetPoWHash() const;
+    uint128 GetCMix() const;
 };

@@ -2,8 +2,14 @@
 
 uint256 CBlockHeader::GetPoWHash() const
 {
-    uint256 thash;
     CDAGSystem sys;
     CHashimotoResult res = sys.Hashimoto(*this);
     return res.GetResult();
+}
+
+uint128 CBlockHeader::GetCMix() const
+{
+    CDAGSystem sys;
+    CHashimotoResult res = sys.Hashimoto(*this);
+    return res.GetCmix();
 }
